@@ -7,8 +7,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 public class OnlinePayment extends  Payment  implements Serializable{
 
-    public String onlinePaymentReferenceNumber;
-    
+    public String onlinePaymentReferenceNumber;   
     
 
 	public OnlinePayment(double amount, Date paymentDate, boolean refunded, Date refundedDate, int appointmentId,double refundAmount,

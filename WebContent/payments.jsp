@@ -16,7 +16,78 @@
 </head>
 <body>
 
-	<table class="table" style="width: 900px">
+	<section id="payment_container" style="width: 400px; margin: 20px">
+		<h2>Make Payment</h2>
+		<div class="form-group">
+			<label> Amount</label> <input type="number" class="form-control"
+				id="p_amount" placeholder="1000">
+		</div>
+		<div class="form-group">
+			<label>Appoinment</label> <input type="number" class="form-control"
+				id="p_appo_id" placeholder="1">
+		</div>
+		<div>
+			<input type="radio" name="type" value="online"> <label>Online</label>
+			<input type="radio" name="type" value="card"> <label>Card</label>
+			<input type="radio" name="type" value="paypal"> <label>Paypal</label>
+		</div>
+
+		<div id="online_container">
+			<h3>Online Payment</h3>
+			<div class="form-group">
+				<label>Ref number</label> <input type="text" class="form-control"
+					id="p_online_ref" placeholder="1">
+			</div>
+		</div>
+		<div id="card_container">
+			<h3>Card Payment</h3>
+			<div class="form-group">
+				<label>Holder</label> <input type="number" class="form-control"
+					id="p_card_holder" placeholder="Jhon">
+			</div>
+			<div class="form-group">
+				<label>Card#</label> <input type="number" class="form-control"
+					id="p_card_number" placeholder="48575425421542">
+			</div>
+			<div class="form-group">
+				<label>Year</label> <input type="number" class="form-control"
+					id="p_card_y" placeholder="2041">
+			</div>
+			<div class="form-group">
+				<label>Month</label> <input type="number" class="form-control"
+					id="p_card_m" placeholder="11">
+			</div>
+			<div class="form-group">
+				<label>Security#</label> <input type="number" class="form-control"
+					id="p_card_sec" placeholder="145">
+			</div>
+		</div>
+		<div id="paypal_container">
+			<h3>Paypal Payment</h3>
+			<div class="form-group">
+				<label>Ref number</label> <input type="text" class="form-control"
+					id="p_paypal_ref" placeholder="1">
+			</div>
+		</div>
+		<button type="button" onclick="doPay()" class="btn btn-primary">Submit</button>
+
+	</section>
+
+	<section id="refund_container" style="width: 400px; margin: 20px">
+		<h2>Make Refund</h2>
+		<div class="form-group">
+			<label>Refund Amount</label> <input type="number"
+				class="form-control" id="refund_amount" placeholder="1000">
+		</div>
+		<div class="form-group">
+			<label>Appinment Id</label> <input type="number" class="form-control"
+				id="refund_appo_id" readonly="readonly">
+		</div>
+		<button type="button" onclick="doRefund()" class="btn btn-primary">Submit</button>
+		<button type="button" onclick="cancelRefund()" class="btn btn-danger">Cancel</button>
+	</section>
+
+	<table class="table" style="width: 1200px">
 		<thead>
 			<tr>
 				<th scope="col">Type</th>
@@ -30,9 +101,9 @@
 			</tr>
 
 		</thead>
-		 <tbody id="payments_details">
-		 
-		 </tbody>
+		<tbody id="payments_details">
+
+		</tbody>
 	</table>
 
 	<script src="js/payments.js"></script>
