@@ -7,6 +7,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -31,6 +32,18 @@ public class PaymentController {
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Payment> view() throws SQLException {
 		return this.paymentService.getAllPayments();
+	}
+	
+	@GET
+	@Path("delete/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public CommonResponse delete(@PathParam("id") Long id) throws SQLException {
+		try {
+			this.paymentService.deletePayment(id);
+			return CommonResponse.OK("Success");
+		} catch (Exception e) {
+			return CommonResponse.Error(e);
+		}
 	}
 	
 	@POST

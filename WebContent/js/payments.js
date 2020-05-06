@@ -135,7 +135,14 @@ function doPay(){
 	
 	
 }
-
+function del(id){
+	$.get('/HealthCare/api/payment/delete/'+id,function(data){
+		if(data.status){
+			alert('Deleted');
+			viewData();
+		}
+	});
+}
 function viewData(){
 
 	const paymentTr='<tr>'+
@@ -151,6 +158,7 @@ function viewData(){
 	
 	const refundButton='<button type="button" class="btn btn-danger" onClick="refund( @id,@amount )">Refund</button>';
 	const unrefundButton='<button type="button" class="btn btn-danger" onClick="unrefund( @id )">Unrefund</button>';
+	const deleteButton='<button type="button" class="btn btn-danger" onClick="del( @id )">Delete</button>';
 	 $.get('/HealthCare/api/payment/view',function(data){
 		 var html='';
 		 data.forEach(row=>{
@@ -162,7 +170,7 @@ function viewData(){
 			.replace('@paymentDate',row.paymentDate)
 			.replace('@refundAmount',row.refundAmount)
 			.replace('@refunded',row.refunded)
-			.replace('@onlinePaymentReferenceNumber',row.onlinePaymentReferenceNumber);
+			.replace('@onlinePaymentReferenceNumber',row.onlinePaymentReferenceNumber==undefined?'-':row.onlinePaymentReferenceNumber);
 			var actions='';
 			if(!row.refunded){
 			 
@@ -170,6 +178,8 @@ function viewData(){
 			}else{
 				actions+=	 unrefundButton.replace('@id',row.appointmentId);
 			}
+			actions+=	 deleteButton.replace('@id',row.appointmentId);
+			
 			r=r.replace('@action',actions);
 			html+=r;
 		 });

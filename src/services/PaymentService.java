@@ -34,7 +34,12 @@ public class PaymentService {
 		}
 
 	}
-	
+	public boolean deletePayment(Long id)throws SQLException {
+		String sql ="DELETE FROM `tbl_payments` WHERE `tbl_payments`.`appointment_id` = ?";
+		PreparedStatement statement=this.sqlConnection.prepareStatement(sql);
+		statement.setLong(1, id);		 
+		return statement.execute();
+	}
 	public boolean makeRefund(Payment payment)throws SQLException  {
 		String sql ="update  `tbl_payments` set refunded=? ,`refunded_date`=?, `refund_amount`=? where `appointment_id`=?";
 		PreparedStatement statement=this.sqlConnection.prepareStatement(sql);
